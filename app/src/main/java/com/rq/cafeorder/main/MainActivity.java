@@ -14,11 +14,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+import static com.google.common.base.Preconditions.checkNotNull;
+
+public class MainActivity extends AppCompatActivity implements MainContract.View {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.bottom_navigationview_main) BottomNavigationViewEx bottomNavigationView;
+
+    private MainContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setBottomNavigationView();
+        mPresenter = new MainPresenter(this, getSupportFragmentManager());
+        mPresenter.start();
     }
 
     private void setBottomNavigationView() {
@@ -37,9 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (itemId) {
                     case R.id.order:
                         Log.d(TAG, "go to order");
+                        mPresenter.goToOrder();
                         break;
                     case R.id.order_list:
                         Log.d(TAG, "go to order list");
+                        mPresenter.goToOrderList();
                         break;
                 }
                 return true;
@@ -50,5 +58,10 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.button_main_confirm)
     public void confirmButtomPressed() {
         Log.d(TAG, "confirmButtomPressed");
+    }
+
+    @Override
+    public void setPresenter(MainContract.Presenter presenter) {
+        mPresenter = checkNotNull(presenter);
     }
 }
