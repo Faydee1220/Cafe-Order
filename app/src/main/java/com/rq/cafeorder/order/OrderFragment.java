@@ -96,6 +96,11 @@ public class OrderFragment extends Fragment implements OrderContract.View {
     }
 
     @Override
+    public void showAddedItem(Item item) {
+        mAddedItemAdapter.addItem(item);
+    }
+
+    @Override
     public void setItemSpace(int columns) {
         float pixel = DpTool.convertDpToPixel(8, getActivity());
         int spacing = Math.round(pixel);

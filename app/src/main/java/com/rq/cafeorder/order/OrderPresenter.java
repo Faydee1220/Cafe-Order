@@ -77,6 +77,11 @@ public class OrderPresenter implements OrderContract.Presenter {
     }
 
     @Override
+    public void addItem(Item item) {
+        mOrderView.showAddedItem(item);
+    }
+
+    @Override
     public void start() {
         mDb = FirebaseFirestore.getInstance();
         loadItems();

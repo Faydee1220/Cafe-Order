@@ -24,8 +24,8 @@ public class AddedItemAdapter extends RecyclerView.Adapter<AddedItemAdapter.Adde
         mItems = items;
     }
 
-    public void updateItems(ArrayList<Item> items) {
-        mItems = items;
+    public void addItem(Item item) {
+        mItems.add(0, item);
         notifyDataSetChanged();
     }
 

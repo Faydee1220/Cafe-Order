@@ -18,10 +18,13 @@ public interface OrderContract {
         void loadImage(String imageUrl, ImageView imageView);
 
         int getColumns();
+        void addItem(Item item);
     }
 
     interface View extends BaseView<OrderContract.Presenter> {
         void showItems(ArrayList<Item> items);
+        void showAddedItem(Item item);
+
         void setItemSpace(int columns);
         Fragment getFragment();
     }
