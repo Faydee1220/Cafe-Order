@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="background_navigation_bar">#fafafa</color>
+    <color name="icon_navigation_item_normal">#9e9e9e</color>
+    <color name="icon_navigation_item_selected">#5f1daa</color>
+
+    <color name="light_gray">#d3d3d3</color>
 </resources>
