@@ -34,12 +34,13 @@ public class MainPresenter implements Presenter {
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            ORDER, ORDER_LIST
+            ORDER, ORDER_LIST, ORDER_DETAIL
     })
     public @interface FragmentType {
     }
     public static final String ORDER = "ORDER";
     public static final String ORDER_LIST = "ORDER_LIST";
+    public static final String ORDER_DETAIL = "ORDER_DETAIL";
 
     private OrderFragment mOrderFragment;
     private OrderListFragment mOrderListFragment;
@@ -61,7 +62,7 @@ public class MainPresenter implements Presenter {
         if (mOrderFragment == null) mOrderFragment = OrderFragment.newInstance();
         if (mOrderListFragment != null) transaction.hide(mOrderListFragment);
         if (!mOrderFragment.isAdded()) {
-            transaction.add(R.id.relativelayout_main_container, mOrderFragment, ORDER);
+            transaction.add(R.id.relativeLayout_main_container, mOrderFragment, ORDER);
         } else {
             transaction.show(mOrderFragment);
         }
@@ -78,7 +79,7 @@ public class MainPresenter implements Presenter {
         if (mOrderListFragment == null) mOrderListFragment = OrderListFragment.newInstance();
         if (mOrderFragment != null) transaction.hide(mOrderFragment);
         if (!mOrderListFragment.isAdded()) {
-            transaction.add(R.id.relativelayout_main_container, mOrderListFragment, ORDER_LIST);
+            transaction.add(R.id.relativeLayout_main_container, mOrderListFragment, ORDER_LIST);
         } else {
             transaction.show(mOrderListFragment);
         }
