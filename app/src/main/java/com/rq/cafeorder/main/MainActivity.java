@@ -1,4 +1,4 @@
-package com.rq.cafeorder;
+package com.rq.cafeorder.main;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.rq.cafeorder.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
