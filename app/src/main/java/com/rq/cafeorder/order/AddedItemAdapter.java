@@ -3,9 +3,10 @@ package com.rq.cafeorder.order;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
-import com.rq.cafeorder.databinding.ItemOrderAllItemsBinding;
+import com.rq.cafeorder.databinding.ItemOrderAddedItemsBinding;
 import com.rq.cafeorder.model.Item;
 
 import java.util.ArrayList;
@@ -13,12 +14,12 @@ import java.util.ArrayList;
 /**
  * Created by Faydee on 2018/6/18.
  */
-public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.AllItemsViewHolder> {
+public class AddedItemAdapter extends RecyclerView.Adapter<AddedItemAdapter.AddedItemViewHolder> {
 
     private OrderContract.Presenter mPresenter;
     private ArrayList<Item> mItems;
 
-    public AllItemsAdapter(OrderContract.Presenter orderPresenter, ArrayList<Item> items) {
+    public AddedItemAdapter(OrderContract.Presenter orderPresenter, ArrayList<Item> items) {
         mPresenter = orderPresenter;
         mItems = items;
     }
@@ -28,11 +29,11 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.AllIte
         notifyDataSetChanged();
     }
 
-    public class AllItemsViewHolder extends RecyclerView.ViewHolder {
+    public class AddedItemViewHolder extends RecyclerView.ViewHolder {
 
-        private ItemOrderAllItemsBinding mBinding;
+        private ItemOrderAddedItemsBinding mBinding;
 
-        public AllItemsViewHolder(ItemOrderAllItemsBinding binding) {
+        public AddedItemViewHolder(ItemOrderAddedItemsBinding binding) {
             super(binding.getRoot());
             mBinding = binding;
         }
@@ -43,22 +44,22 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.AllIte
         }
 
         private void loadImage(String imageUrl) {
-            mPresenter.loadImage(imageUrl, mBinding.imageViewOrderCafe);
+            mPresenter.loadImage(imageUrl, mBinding.imageViewOrderAddedItem);
         }
     }
 
     @NonNull
     @Override
-    public AllItemsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AddedItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        ItemOrderAllItemsBinding binding = ItemOrderAllItemsBinding.inflate(
+        ItemOrderAddedItemsBinding binding = ItemOrderAddedItemsBinding.inflate(
                 inflater, parent, false);
-        AllItemsViewHolder viewHolder = new AllItemsViewHolder(binding);
+        AddedItemViewHolder viewHolder = new AddedItemViewHolder(binding);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AllItemsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AddedItemViewHolder holder, int position) {
         holder.bind(mItems.get(position));
     }
 
@@ -66,6 +67,4 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.AllIte
     public int getItemCount() {
         return mItems.size();
     }
-
-
 }

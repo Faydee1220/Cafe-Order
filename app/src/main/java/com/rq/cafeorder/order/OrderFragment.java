@@ -34,6 +34,7 @@ public class OrderFragment extends Fragment implements OrderContract.View {
 
     private OrderContract.Presenter mPresenter;
     private AllItemsAdapter mAllItemsAdapter;
+    private AddedItemAdapter mAddedItemAdapter;
 
     public OrderFragment() {}
 
@@ -45,6 +46,7 @@ public class OrderFragment extends Fragment implements OrderContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAllItemsAdapter = new AllItemsAdapter(mPresenter, new ArrayList<Item>());
+        mAddedItemAdapter = new AddedItemAdapter(mPresenter, new ArrayList<Item>());
     }
 
     @Nullable
@@ -53,7 +55,18 @@ public class OrderFragment extends Fragment implements OrderContract.View {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         ButterKnife.bind(this, view);
+        setAllItemsUi();
+        setAddedItemsUi();
+        return view;
+    }
 
+    private void setAddedItemsUi() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        addedItemsRecyclerView.setLayoutManager(layoutManager);
+        addedItemsRecyclerView.setAdapter(mAddedItemAdapter);
+    }
+
+    private void setAllItemsUi() {
         int columns = mPresenter.getColumns();
 //        Log.d(TAG, "columns: " + columns);
         GridLayoutManager layoutManager = new GridLayoutManager(
@@ -64,8 +77,6 @@ public class OrderFragment extends Fragment implements OrderContract.View {
         setItemSpace(columns);
         allItemsRecyclerView.setLayoutManager(layoutManager);
         allItemsRecyclerView.setAdapter(mAllItemsAdapter);
-
-        return view;
     }
 
     @Override

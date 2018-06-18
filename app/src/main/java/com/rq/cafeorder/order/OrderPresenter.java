@@ -18,6 +18,7 @@ import com.rq.cafeorder.model.Item;
 import java.util.ArrayList;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.rq.cafeorder.model.Constant.ITEMS;
 
 /**
  * Created by Faydee on 2018/6/18.
@@ -35,7 +36,7 @@ public class OrderPresenter implements OrderContract.Presenter {
 
     @Override
     public void loadItems() {
-        mDb.collection("items")
+        mDb.collection(ITEMS)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

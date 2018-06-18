@@ -7,6 +7,8 @@ public class Item {
     public String name;
     public int price;
     public String image;
+    public int type;
+    public boolean isSugar;
 
     public Item() {}
 }
