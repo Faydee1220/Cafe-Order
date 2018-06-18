@@ -2,9 +2,7 @@ package com.rq.cafeorder.order;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.rq.cafeorder.R;
@@ -58,23 +56,23 @@ public class AddedItemAdapter extends RecyclerView.Adapter<AddedItemAdapter.Adde
         @OnClick(R.id.radioButton_added_item_iced)
         public void icedPressed() {
 //            Log.d(TAG, "icedPressed");
-            mItems.get(getAdapterPosition()).type = Constant.Types.ICED;
+            mItems.get(getAdapterPosition()).iced = true;
         }
 
         @OnClick(R.id.radioButton_added_item_hot)
         public void hotPressed() {
 //            Log.d(TAG, "hotPressed");
-            mItems.get(getAdapterPosition()).type = Constant.Types.HOT;
+            mItems.get(getAdapterPosition()).iced = false;
         }
 
         @OnClick(R.id.radioButton_added_item_sugar)
         public void sugarPressed() {
-            mItems.get(getAdapterPosition()).isSugar = true;
+            mItems.get(getAdapterPosition()).sugar = true;
         }
 
         @OnClick(R.id.radioButton_added_item_no_sugar)
         public void noSugarPressed() {
-            mItems.get(getAdapterPosition()).isSugar = false;
+            mItems.get(getAdapterPosition()).sugar = false;
         }
     }
 

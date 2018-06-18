@@ -7,15 +7,10 @@ public class Item {
     public String name;
     public int price;
     public String image;
-    public int type = Constant.Types.ICED;
-    public boolean isSugar = true;
+    public int cups;
+    public boolean iced = true;
+    public boolean sugar = true;
 
     public Item() {}
 
-    public boolean isIced() {
-        if (type == Constant.Types.ICED) {
-            return true;
-        }
-        return false;
-    }
 }
