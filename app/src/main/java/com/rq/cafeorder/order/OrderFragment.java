@@ -49,6 +49,8 @@ public class OrderFragment extends Fragment implements OrderContract.View {
         ButterKnife.bind(this, view);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);
+        allItemsRecyclerView.setLayoutManager(layoutManager);
+        allItemsRecyclerView.setAdapter(mAdapter);
 
         return view;
     }
@@ -63,6 +65,12 @@ public class OrderFragment extends Fragment implements OrderContract.View {
     @Override
     public void setPresenter(OrderContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
+    }
+
+    @Override
+    public void showItems(ArrayList<Item> items) {
+        mAdapter.updateItems(items);
+
     }
 
     @Override

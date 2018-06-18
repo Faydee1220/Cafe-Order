@@ -2,10 +2,9 @@ package com.rq.cafeorder.order;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
 import com.rq.cafeorder.databinding.ItemOrderAllItemsBinding;
 import com.rq.cafeorder.model.Item;
 
@@ -24,6 +23,11 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.AllIte
         mItems = items;
     }
 
+    public void updateItems(ArrayList<Item> items) {
+        mItems = items;
+        notifyDataSetChanged();
+    }
+
     public class AllItemsViewHolder extends RecyclerView.ViewHolder {
 
         private ItemOrderAllItemsBinding mBinding;
@@ -35,7 +39,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.AllIte
 
         private void bind(Item item) {
             mBinding.setItem(item);
-            loadImage(item.imageUrl);
+            loadImage(item.image);
         }
 
         private void loadImage(String imageUrl) {
@@ -46,7 +50,11 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.AllIte
     @NonNull
     @Override
     public AllItemsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        ItemOrderAllItemsBinding binding = ItemOrderAllItemsBinding.inflate(
+                inflater, parent, false);
+        AllItemsViewHolder viewHolder = new AllItemsViewHolder(binding);
+        return viewHolder;
     }
 
     @Override

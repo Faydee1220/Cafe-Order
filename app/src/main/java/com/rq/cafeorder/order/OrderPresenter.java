@@ -12,6 +12,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rq.cafeorder.R;
+import com.rq.cafeorder.model.Item;
+
+import java.util.ArrayList;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -37,9 +40,14 @@ public class OrderPresenter implements OrderContract.Presenter {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            ArrayList<Item> items = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+//                                Log.d(TAG, document.getId() + " => " + document.getData() + "\n");
+                                Item item = document.toObject(Item.class);
+                                items.add(item);
+//                                Log.d(TAG, "name: " + item.name);
                             }
+                            mOrderView.showItems(items);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
@@ -51,6 +59,7 @@ public class OrderPresenter implements OrderContract.Presenter {
     public void loadImage(String imageUrl, ImageView imageView) {
         RequestOptions options = new RequestOptions();
         options = options.placeholder(R.drawable.ic_local_cafe);
+        Log.d(TAG, "loadImage image: " + imageUrl);
         Glide.with(mOrderView.getFragment())
                 .load(imageUrl)
                 .apply(options)

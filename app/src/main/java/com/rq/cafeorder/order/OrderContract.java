@@ -5,6 +5,9 @@ import android.widget.ImageView;
 
 import com.rq.cafeorder.BasePresenter;
 import com.rq.cafeorder.BaseView;
+import com.rq.cafeorder.model.Item;
+
+import java.util.ArrayList;
 
 /**
  * Created by Faydee on 2018/6/18.
@@ -16,6 +19,7 @@ public interface OrderContract {
     }
 
     interface View extends BaseView<OrderContract.Presenter> {
+        void showItems(ArrayList<Item> items);
         Fragment getFragment();
     }
 }
