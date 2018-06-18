@@ -10,6 +10,7 @@ public interface MainContract {
     interface Presenter extends BasePresenter {
         void goToOrder();
         void goToOrderList();
+        void login();
     }
 
     interface View extends BaseView<Presenter> {
