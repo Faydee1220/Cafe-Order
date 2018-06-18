@@ -22,6 +22,7 @@ public interface OrderContract {
 
     interface View extends BaseView<OrderContract.Presenter> {
         void showItems(ArrayList<Item> items);
+        void setItemSpace(int columns);
         Fragment getFragment();
     }
 }

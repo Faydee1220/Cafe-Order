@@ -30,9 +30,10 @@ public class OrderFragment extends Fragment implements OrderContract.View {
     private static final String TAG = OrderFragment.class.getSimpleName();
 
     @BindView(R.id.recyclerview_order_all_items) RecyclerView allItemsRecyclerView;
+    @BindView(R.id.recyclerview_order_added_items) RecyclerView addedItemsRecyclerView;
 
     private OrderContract.Presenter mPresenter;
-    private AllItemsAdapter mAdapter;
+    private AllItemsAdapter mAllItemsAdapter;
 
     public OrderFragment() {}
 
@@ -43,17 +44,7 @@ public class OrderFragment extends Fragment implements OrderContract.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new AllItemsAdapter(mPresenter, new ArrayList<Item>());
-    }
-
-    private void setItemSpace(int columns) {
-        float pixel = DpTool.convertDpToPixel(8, getActivity());
-        int spacing = Math.round(pixel);
-//        Log.d(TAG, "pixel:" + String.valueOf(pixel));
-//        int spacing = 20;
-        boolean includeEdge = false;
-        allItemsRecyclerView.addItemDecoration(new GridSpacingItemDecoration(
-                columns, spacing, includeEdge));
+        mAllItemsAdapter = new AllItemsAdapter(mPresenter, new ArrayList<Item>());
     }
 
     @Nullable
@@ -72,7 +63,7 @@ public class OrderFragment extends Fragment implements OrderContract.View {
                 false);
         setItemSpace(columns);
         allItemsRecyclerView.setLayoutManager(layoutManager);
-        allItemsRecyclerView.setAdapter(mAdapter);
+        allItemsRecyclerView.setAdapter(mAllItemsAdapter);
 
         return view;
     }
@@ -81,7 +72,6 @@ public class OrderFragment extends Fragment implements OrderContract.View {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.start();
-        mPresenter.loadItems();
     }
 
     @Override
@@ -91,8 +81,16 @@ public class OrderFragment extends Fragment implements OrderContract.View {
 
     @Override
     public void showItems(ArrayList<Item> items) {
-        mAdapter.updateItems(items);
+        mAllItemsAdapter.updateItems(items);
+    }
 
+    @Override
+    public void setItemSpace(int columns) {
+        float pixel = DpTool.convertDpToPixel(8, getActivity());
+        int spacing = Math.round(pixel);
+        boolean includeEdge = false;
+        allItemsRecyclerView.addItemDecoration(new GridSpacingItemDecoration(
+                columns, spacing, includeEdge));
     }
 
     @Override
