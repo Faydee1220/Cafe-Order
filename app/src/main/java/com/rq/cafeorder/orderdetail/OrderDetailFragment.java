@@ -13,10 +13,14 @@ import com.rq.cafeorder.order.OrderFragment;
 
 import butterknife.ButterKnife;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Created by Faydee on 2018/6/18.
  */
-public class OrderDetailFragment extends Fragment {
+public class OrderDetailFragment extends Fragment implements OrderDetailContract.View {
+
+    private OrderDetailContract.Presenter mPresenter;
 
     public OrderDetailFragment() {}
 
@@ -36,5 +40,10 @@ public class OrderDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_order_detail, container, false);
         ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void setPresenter(OrderDetailContract.Presenter presenter) {
+        mPresenter = checkNotNull(presenter);
     }
 }

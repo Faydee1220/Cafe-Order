@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.rq.cafeorder.R;
+import com.rq.cafeorder.order.OrderPresenter;
 
 import static com.rq.cafeorder.main.MainPresenter.ORDER_DETAIL;
 
@@ -15,6 +16,7 @@ import static com.rq.cafeorder.main.MainPresenter.ORDER_DETAIL;
 public class OrderDetailActivity extends AppCompatActivity {
 
     private OrderDetailFragment mOrderDetailFragment;
+    private OrderDetailContract.Presenter mOrderDetailPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,10 +29,16 @@ public class OrderDetailActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (mOrderDetailFragment == null) mOrderDetailFragment = OrderDetailFragment.newInstance();
         if (!mOrderDetailFragment.isAdded()) {
-            transaction.add(R.id.relativeLayout_order_detail_container, mOrderDetailFragment, ORDER_DETAIL);
+            transaction.add(R.id.relativeLayout_order_detail_container,
+                    mOrderDetailFragment,
+                    ORDER_DETAIL);
         } else {
             transaction.show(mOrderDetailFragment);
         }
         transaction.commit();
+
+        if (mOrderDetailPresenter == null) {
+            mOrderDetailPresenter = new OrderDetailPresenter(mOrderDetailFragment);
+        }
     }
 }
