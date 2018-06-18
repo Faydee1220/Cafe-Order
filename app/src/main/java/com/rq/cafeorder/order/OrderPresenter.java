@@ -1,6 +1,7 @@
 package com.rq.cafeorder.order;
 
 import android.support.annotation.NonNull;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -58,12 +59,20 @@ public class OrderPresenter implements OrderContract.Presenter {
     @Override
     public void loadImage(String imageUrl, ImageView imageView) {
         RequestOptions options = new RequestOptions();
+        options = options.fitCenter();
         options = options.placeholder(R.drawable.ic_local_cafe);
-        Log.d(TAG, "loadImage image: " + imageUrl);
+//        Log.d(TAG, "loadImage image: " + imageUrl);
         Glide.with(mOrderView.getFragment())
                 .load(imageUrl)
                 .apply(options)
                 .into(imageView);
+    }
+
+    @Override
+    public int getColumns() {
+        DisplayMetrics displayMetrics = mOrderView.getFragment().getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        return (int) (dpWidth / 150);
     }
 
     @Override

@@ -16,6 +16,8 @@ public interface OrderContract {
     interface Presenter extends BasePresenter {
         void loadItems();
         void loadImage(String imageUrl, ImageView imageView);
+
+        int getColumns();
     }
 
     interface View extends BaseView<OrderContract.Presenter> {
