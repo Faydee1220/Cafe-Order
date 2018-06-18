@@ -9,15 +9,21 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rq.cafeorder.R;
+import com.rq.cafeorder.model.Constant;
 import com.rq.cafeorder.model.Item;
 import com.rq.cafeorder.model.Order;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.rq.cafeorder.model.Constant.ITEMS;
@@ -81,12 +87,75 @@ public class OrderPresenter implements OrderContract.Presenter {
     @Override
     public Order getOrderData() {
         ArrayList<Item> addedItems = mOrderView.getAddedItems();
+
+//        List<Item> espressoItems = addedItems.stream()
+//                .filter(item -> item.name.contains(Constant.CafeNames.ESPRESSO))
+//                .collect(Collectors.toList());
+//
+//        List<Item> americanoItems = addedItems.stream()
+//                .filter(item -> item.name.contains(Constant.CafeNames.AMERICANO))
+//                .collect(Collectors.toList());
+//
+//        List<Item> latteItems = addedItems.stream()
+//                .filter(item -> item.name.contains(Constant.CafeNames.LATTE))
+//                .collect(Collectors.toList());
+//
+//        List<Item> mochaItems = addedItems.stream()
+//                .filter(item -> item.name.contains(Constant.CafeNames.MOCHA))
+//                .collect(Collectors.toList());
+//
+//        List<Item> singleOriginItems = addedItems.stream()
+//                .filter(item -> item.name.contains(Constant.CafeNames.SINGLE_ORIGIN))
+//                .collect(Collectors.toList());
+//
+//        List<Item> blackTeaItems = addedItems.stream()
+//                .filter(item -> item.name.contains(Constant.CafeNames.BLACK_TEA))
+//                .collect(Collectors.toList());
+//
+//        List<Item> greenTeaItems = addedItems.stream()
+//                .filter(item -> item.name.contains(Constant.CafeNames.GREEN_TEA))
+//                .collect(Collectors.toList());
+
         Log.d(TAG, "getOrderData");
 
-        
+        List<Item> espressoItems = new ArrayList<>();
+        List<Item> americanoItems = new ArrayList<>();
+        List<Item> latteItems = new ArrayList<>();
+        List<Item> mochaItems = new ArrayList<>();
+        List<Item> singleOriginItems = new ArrayList<>();
+        List<Item> blackTeaItems = new ArrayList<>();
+        List<Item> greenTeaItems = new ArrayList<>();
+
+        for (Item item: addedItems) {
+            item.cups += 1;
+            switch (item.name) {
+                case Constant.CafeNames.ESPRESSO:
+                    espressoItems.add(item);
+                    break;
+                case Constant.CafeNames.AMERICANO:
+                    americanoItems.add(item);
+                    break;
+                case Constant.CafeNames.LATTE:
+                    latteItems.add(item);
+                    break;
+                case Constant.CafeNames.MOCHA:
+                    mochaItems.add(item);
+                    break;
+                case Constant.CafeNames.SINGLE_ORIGIN:
+                    singleOriginItems.add(item);
+                    break;
+                case Constant.CafeNames.BLACK_TEA:
+                    blackTeaItems.add(item);
+                    break;
+                case Constant.CafeNames.GREEN_TEA:
+                    greenTeaItems.add(item);
+                    break;
+            }
+
+        }
 
         Order order = new Order();
-        ArrayList<Item> contents = new ArrayList<>();
+        List<Item> contents = new ArrayList<>();
 
         return null;
     }
