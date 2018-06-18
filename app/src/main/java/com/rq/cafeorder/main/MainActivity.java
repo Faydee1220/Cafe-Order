@@ -1,5 +1,6 @@
 package com.rq.cafeorder.main;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.rq.cafeorder.R;
+import com.rq.cafeorder.orderdetail.OrderDetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,8 +58,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @OnClick(R.id.button_main_confirm)
-    public void confirmButtomPressed() {
-        Log.d(TAG, "confirmButtomPressed");
+    public void confirmButtonPressed() {
+        Log.d(TAG, "confirmButtonPressed");
+        Intent intent = new Intent(this, OrderDetailActivity.class);
+        startActivity(intent);
     }
 
     @Override
