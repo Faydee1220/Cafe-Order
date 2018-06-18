@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.rq.cafeorder.R;
+import com.rq.cafeorder.model.Order;
 import com.rq.cafeorder.orderdetail.OrderDetailActivity;
 
 import butterknife.BindView;
@@ -60,12 +61,19 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @OnClick(R.id.button_main_confirm)
     public void confirmButtonPressed() {
         Log.d(TAG, "confirmButtonPressed");
-        Intent intent = new Intent(this, OrderDetailActivity.class);
-        startActivity(intent);
+        Order order = mPresenter.getOrderData();
+        showOrderDetailUi(order);
     }
 
     @Override
     public void setPresenter(MainContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
+    }
+
+    @Override
+    public void showOrderDetailUi(Order order) {
+        // TODO: 用訂單資料跳頁
+        Intent intent = new Intent(this, OrderDetailActivity.class);
+        startActivity(intent);
     }
 }

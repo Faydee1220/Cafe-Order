@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import com.rq.cafeorder.BasePresenter;
 import com.rq.cafeorder.BaseView;
 import com.rq.cafeorder.model.Item;
+import com.rq.cafeorder.model.Order;
 
 import java.util.ArrayList;
 
@@ -16,9 +17,10 @@ public interface OrderContract {
     interface Presenter extends BasePresenter {
         void loadItems();
         void loadImage(String imageUrl, ImageView imageView);
+        void addItem(Item item);
 
         int getColumns();
-        void addItem(Item item);
+        Order getOrderData();
     }
 
     interface View extends BaseView<OrderContract.Presenter> {
@@ -27,5 +29,6 @@ public interface OrderContract {
 
         void setItemSpace(int columns);
         Fragment getFragment();
+        ArrayList<Item> getAddedItems();
     }
 }

@@ -14,8 +14,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rq.cafeorder.R;
 import com.rq.cafeorder.model.Item;
+import com.rq.cafeorder.model.Order;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.rq.cafeorder.model.Constant.ITEMS;
@@ -74,6 +76,19 @@ public class OrderPresenter implements OrderContract.Presenter {
         DisplayMetrics displayMetrics = mOrderView.getFragment().getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         return (int) (dpWidth / 150);
+    }
+
+    @Override
+    public Order getOrderData() {
+        ArrayList<Item> addedItems = mOrderView.getAddedItems();
+        Log.d(TAG, "getOrderData");
+
+        
+
+        Order order = new Order();
+        ArrayList<Item> contents = new ArrayList<>();
+
+        return null;
     }
 
     @Override

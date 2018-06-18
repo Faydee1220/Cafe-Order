@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.rq.cafeorder.R;
 import com.rq.cafeorder.main.MainContract.Presenter;
+import com.rq.cafeorder.model.Order;
 import com.rq.cafeorder.order.OrderFragment;
 import com.rq.cafeorder.order.OrderPresenter;
 import com.rq.cafeorder.orderlist.OrderListFragment;
@@ -100,6 +101,11 @@ public class MainPresenter implements Presenter {
                         }
                     }
                 });
+    }
+
+    @Override
+    public Order getOrderData() {
+        return mOrderPresenter.getOrderData();
     }
 
     @Override

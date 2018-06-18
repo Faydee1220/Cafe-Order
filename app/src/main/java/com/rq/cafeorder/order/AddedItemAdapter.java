@@ -34,6 +34,10 @@ public class AddedItemAdapter extends RecyclerView.Adapter<AddedItemAdapter.Adde
         notifyDataSetChanged();
     }
 
+    public ArrayList<Item> getAddedItems() {
+        return mItems;
+    }
+
     public class AddedItemViewHolder extends RecyclerView.ViewHolder {
 
         private ItemOrderAddedItemsBinding mBinding;

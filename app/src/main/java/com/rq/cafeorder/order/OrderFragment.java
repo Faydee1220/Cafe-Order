@@ -119,4 +119,9 @@ public class OrderFragment extends Fragment implements OrderContract.View {
     public Fragment getFragment() {
         return this;
     }
+
+    @Override
+    public ArrayList<Item> getAddedItems() {
+        return mAddedItemAdapter.getAddedItems();
+    }
 }
