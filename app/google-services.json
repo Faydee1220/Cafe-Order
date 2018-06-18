@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "83497745291",
+    "firebase_url": "https://cafeorder-b6d05.firebaseio.com",
+    "project_id": "cafeorder-b6d05",
+    "storage_bucket": "cafeorder-b6d05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83497745291:android:82d5115f36a044ae",
+        "android_client_info": {
+          "package_name": "com.rq.cafeorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83497745291-5nhmvhlcp5oufmalcs9vf6h9omotovnj.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "83497745291-5nhmvhlcp5oufmalcs9vf6h9omotovnj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh1-T0nzHgjUZ6_vViA6mbdAPozOLNP4k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

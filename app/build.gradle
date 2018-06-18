@@ -33,4 +33,9 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     implementation 'com.google.guava:guava:24.1-android'
+
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-firestore:17.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

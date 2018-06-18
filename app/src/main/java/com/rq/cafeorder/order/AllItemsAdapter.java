@@ -9,7 +9,7 @@ import android.view.ViewGroup;
  * Created by Faydee on 2018/6/18.
  */
 public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.AllItemsViewHolder> {
-    
+
     public class AllItemsViewHolder extends RecyclerView.ViewHolder {
 
         public AllItemsViewHolder(View itemView) {

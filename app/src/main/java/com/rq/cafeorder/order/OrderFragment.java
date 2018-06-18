@@ -15,12 +15,16 @@ import com.rq.cafeorder.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Created by Faydee on 2018/6/18.
  */
-public class OrderFragment extends Fragment {
+public class OrderFragment extends Fragment implements OrderContract.View {
 
     @BindView(R.id.recyclerview_order_all_items) RecyclerView allItemsRecyclerView;
+
+    private OrderContract.Presenter mPresenter;
 
     public OrderFragment() { }
 
@@ -42,6 +46,12 @@ public class OrderFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mPresenter.start();
+        mPresenter.loadItems();
+    }
 
+    @Override
+    public void setPresenter(OrderContract.Presenter presenter) {
+        mPresenter = checkNotNull(presenter);
     }
 }

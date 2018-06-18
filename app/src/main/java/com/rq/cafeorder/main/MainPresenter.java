@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.rq.cafeorder.R;
 import com.rq.cafeorder.main.MainContract.Presenter;
 import com.rq.cafeorder.order.OrderFragment;
+import com.rq.cafeorder.order.OrderPresenter;
 import com.rq.cafeorder.orderlist.OrderListFragment;
 
 import java.lang.annotation.Retention;
@@ -36,6 +37,8 @@ public class MainPresenter implements Presenter {
     private OrderFragment mOrderFragment;
     private OrderListFragment mOrderListFragment;
 
+    private OrderPresenter mOrderPresenter;
+
     public MainPresenter(MainContract.View view, FragmentManager fragmentManager) {
         mMainView = checkNotNull(view, "mainView cannot be null!");
         mMainView.setPresenter(this);
@@ -54,6 +57,10 @@ public class MainPresenter implements Presenter {
             transaction.show(mOrderFragment);
         }
         transaction.commit();
+
+        if (mOrderPresenter == null) {
+            mOrderPresenter = new OrderPresenter(mOrderFragment);
+        }
     }
 
     @Override
