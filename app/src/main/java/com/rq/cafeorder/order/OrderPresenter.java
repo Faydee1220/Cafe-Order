@@ -2,12 +2,16 @@ package com.rq.cafeorder.order;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.rq.cafeorder.R;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -41,6 +45,16 @@ public class OrderPresenter implements OrderContract.Presenter {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void loadImage(String imageUrl, ImageView imageView) {
+        RequestOptions options = new RequestOptions();
+        options = options.placeholder(R.drawable.ic_local_cafe);
+        Glide.with(mOrderView.getFragment())
+                .load(imageUrl)
+                .apply(options)
+                .into(imageView);
     }
 
     @Override

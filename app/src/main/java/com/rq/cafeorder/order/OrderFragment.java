@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rq.cafeorder.R;
+import com.rq.cafeorder.model.Item;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,11 +28,18 @@ public class OrderFragment extends Fragment implements OrderContract.View {
     @BindView(R.id.recyclerview_order_all_items) RecyclerView allItemsRecyclerView;
 
     private OrderContract.Presenter mPresenter;
+    private AllItemsAdapter mAdapter;
 
-    public OrderFragment() { }
+    public OrderFragment() {}
 
     public static OrderFragment newInstance() {
         return new OrderFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAdapter = new AllItemsAdapter(mPresenter, new ArrayList<Item>());
     }
 
     @Nullable
@@ -53,5 +63,10 @@ public class OrderFragment extends Fragment implements OrderContract.View {
     @Override
     public void setPresenter(OrderContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
+    }
+
+    @Override
+    public Fragment getFragment() {
+        return this;
     }
 }
