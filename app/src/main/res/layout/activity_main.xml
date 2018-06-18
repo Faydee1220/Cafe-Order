@@ -27,8 +27,31 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <RelativeLayout
+        android:id="@+id/relativelayout_main_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_main_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_main_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:text="Confirm"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigationview_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </Button>
+
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
-        android:id="@+id/bnve"
+        android:id="@+id/bottom_navigationview_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background_navigation_bar"
